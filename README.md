@@ -117,3 +117,7 @@ note: we need to add node modules in volume
 # get sha
 
 - git rev-parse --short HEAD
+
+# push images with tag sha
+
+- docker push sergiouk10/node-app-server:$(git rev-parse --short HEAD)
