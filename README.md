@@ -110,7 +110,27 @@ note: we need to add node modules in volume
 
 # with env file
 
-- docker run -p 3000:8000 --env-file ./.env -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env
+- with env file-> docker run -p 3000:8000 --env-file ./.env -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env
+
+- without env file-> docker run -p 3000:8000 --env PORT=8000 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env
+
+e.g.
+
+- FROM node:14
+
+- WORKDIR /app
+
+- COPY package.json /app
+
+- RUN npm install
+
+- COPY . /app
+
+- ENV PORT 80
+
+- EXPOSE $PORT
+
+- CMD ["npm", "start"]
 
 # arguments art
 
