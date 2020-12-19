@@ -1,98 +1,98 @@
 DOCKER INFO
 
-# build image
+## build image
 
 docker build .
 
-# run container
+## run container
 
 docker run -p 8000:80 imageidxxx
 
-# Run container and removed after close
+## Run container and removed after close
 
 docker run -p 3000:80 -d --rm imageidxxx
 
-# Check container
+## Check container
 
 docker ps -a
 
-# Check running container
+## Check running container
 
 docker ps
 
-# Check images
+## Check images
 
 docker images
 
-# Remove container
+## Remove container
 
 docker rm containername
 
-# Remove images
+## Remove images
 
 docker rmi imageid
 
-# Remove images / conatiner
+## Remove images / conatiner
 
 docker prune / docker image prune
 
-# inspect image
+## inspect image
 
 docker image inspect imageid
 
-# copy files or folders could be inside a container
+## copy files or folders could be inside a container
 
 - docker cp directory-or-file-to-be-copy destiny
 - docker cp directory-or-file-to-be-copy container-name:/forder-or-directory
 
-# name container
+## name container
 
 docker run -p expose-port-in-browser:app-port -d --rm --name goalkube imageid
 
-# name image is a tag
+## name image is a tag
 
 - name:tag = REPOSITORY:TAG = name:version
 - e.g FROM node:12
 - docker build -t name:tag .
 - docker build -t goals:latest-sergio .
 
-# you can start a container using name and tag
+## you can start a container using name and tag
 
 docker run -p 8000:80 -d --rm --name surfing goals:latest-sergio
 
-# rename images
+## rename images
 
 - docker tag current-REPOSITORY:TAG new-docker-hub-sergiouk10/node-app-server
 - e.g. docker tag goals:latest-sergio sergiouk10/node-app-server
 
-# push to dockerhub
+## push to dockerhub
 
 - create dockerhub repo
 - get slug e.g: sergiouk10/node-app-server
 - build image with -t e.g: docker build -t sergiouk10/node-app-server:version-example .
 
-# push to docker hub
+## push to docker hub
 
 docker push sergiouk10/node-app-server:version-example
 
-# pull to docker hub
+## pull to docker hub
 
 docker pull sergiouk10/node-app-server
 
-# add volumes with -v, path and name
+## add volumes with -v, path and name
 
 docker run -p 3000:80 -d --rm --name -v volume-name-feedback:/app/feedback feedback-node:volumes
 
-# volume list
+## volume list
 
 docker volume ls
 
-# remove volume
+## remove volume
 
 - docker volume prune
 - docker volume rm vol_name
 
-# binding volume path
+## binding volume path
 
 - we need to add a relative path and the path inside your container
 - docker run -p 3000:80 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app" feedback-node:volumes
@@ -104,11 +104,11 @@ note: we need to add node modules in volume
 
 - we can read only adding extra : at the end eg: -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro"
 
-# env to run docker
+## env to run docker
 
 - docker run -p 3000:8000 --env PORT=8000 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env
 
-# with env file
+## with env file
 
 - with env file-> docker run -p 3000:8000 --env-file ./.env -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env
 
@@ -132,18 +132,12 @@ e.g.
 
 - CMD ["npm", "start"]
 
-# arguments art
+## arguments art
 
-# get sha
+## get sha
 
 - git rev-parse --short HEAD
 
-# push images with tag sha
+## push images with tag sha
 
-- docker push sergiouk10/node-app-server:$(git rev-parse --short HEAD)
-
-# test
-
-## test
-
-### test
+- `docker push sergiouk10/node-app-server:$(git rev-parse --short HEAD)`
