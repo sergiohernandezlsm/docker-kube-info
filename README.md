@@ -2,117 +2,117 @@ DOCKER INFO
 
 ## build image
 
-docker build .
+`docker build .`
 
 ## run container
 
-docker run -p 8000:80 imageidxxx
+`docker run -p 8000:80 imageidxxx`
 
 ## Run container and removed after close
 
-docker run -p 3000:80 -d --rm imageidxxx
+`docker run -p 3000:80 -d --rm imageidxxx`
 
 ## Check container
 
-docker ps -a
+`docker ps -a`
 
 ## Check running container
 
-docker ps
+`docker ps`
 
 ## Check images
 
-docker images
+`docker images`
 
 ## Remove container
 
-docker rm containername
+`docker rm containername`
 
 ## Remove images
 
-docker rmi imageid
+`docker rmi imageid`
 
 ## Remove images / conatiner
 
-docker prune / docker image prune
+`docker prune / docker image prune`
 
 ## inspect image
 
-docker image inspect imageid
+`docker image inspect imageid`
 
 ## copy files or folders could be inside a container
 
-- docker cp directory-or-file-to-be-copy destiny
-- docker cp directory-or-file-to-be-copy container-name:/forder-or-directory
+`docker cp directory-or-file-to-be-copy destiny`
+`docker cp directory-or-file-to-be-copy container-name:/forder-or-directory`
 
 ## name container
 
-docker run -p expose-port-in-browser:app-port -d --rm --name goalkube imageid
+`docker run -p expose-port-in-browser:app-port -d --rm --name goalkube imageid`
 
 ## name image is a tag
 
-- name:tag = REPOSITORY:TAG = name:version
-- e.g FROM node:12
-- docker build -t name:tag .
-- docker build -t goals:latest-sergio .
+`name:tag = REPOSITORY:TAG = name:version`
+`e.g FROM node:12`
+`docker build -t name:tag .`
+`docker build -t goals:latest-sergio .`
 
 ## you can start a container using name and tag
 
-docker run -p 8000:80 -d --rm --name surfing goals:latest-sergio
+`docker run -p 8000:80 -d --rm --name surfing goals:latest-sergio`
 
 ## rename images
 
-- docker tag current-REPOSITORY:TAG new-docker-hub-sergiouk10/node-app-server
-- e.g. docker tag goals:latest-sergio sergiouk10/node-app-server
+`docker tag current-REPOSITORY:TAG new-docker-hub-sergiouk10/node-app-server`
+`e.g. docker tag goals:latest-sergio sergiouk10/node-app-server`
 
 ## push to dockerhub
 
-- create dockerhub repo
-- get slug e.g: sergiouk10/node-app-server
-- build image with -t e.g: docker build -t sergiouk10/node-app-server:version-example .
+`create dockerhub repo`
+`get slug e.g: sergiouk10/node-app-server`
+`build image with -t e.g: docker build -t sergiouk10/node-app-server:version-example .`
 
 ## push to docker hub
 
-docker push sergiouk10/node-app-server:version-example
+`docker push sergiouk10/node-app-server:version-example`
 
 ## pull to docker hub
 
-docker pull sergiouk10/node-app-server
+`docker pull sergiouk10/node-app-server`
 
 ## add volumes with -v, path and name
 
-docker run -p 3000:80 -d --rm --name -v volume-name-feedback:/app/feedback feedback-node:volumes
+`docker run -p 3000:80 -d --rm --name -v volume-name-feedback:/app/feedback feedback-node:volumes`
 
 ## volume list
 
-docker volume ls
+`docker volume ls`
 
 ## remove volume
 
-- docker volume prune
-- docker volume rm vol_name
+`docker volume prune`
+`docker volume rm vol_name`
 
 ## binding volume path
 
-- we need to add a relative path and the path inside your container
-- docker run -p 3000:80 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app" feedback-node:volumes
-- we can use ---> -v $(pwd):/app
+`we need to add a relative path and the path inside your container`
+`docker run -p 3000:80 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app" feedback-node:volumes`
+`we can use ---> -v $(pwd):/app`
 
-note: we need to add node modules in volume
+- note: we need to add node modules in volume
 
-- docker run -p 3000:80 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app" -v /app/node_modules feedback-node:volumes
+`docker run -p 3000:80 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app" -v /app/node_modules feedback-node:volumes`
 
-- we can read only adding extra : at the end eg: -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro"
+- we can read only adding extra : at the end eg: `-v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro"`
 
 ## env to run docker
 
-- docker run -p 3000:8000 --env PORT=8000 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env
+`docker run -p 3000:8000 --env PORT=8000 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env`
 
 ## with env file
 
-- with env file-> docker run -p 3000:8000 --env-file ./.env -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env
+- with env file-> `docker run -p 3000:8000 --env-file ./.env -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env`
 
-- without env file-> docker run -p 3000:8000 --env PORT=8000 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env
+- without env file-> `docker run -p 3000:8000 --env PORT=8000 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env`
 
 e.g.
 
@@ -136,8 +136,8 @@ e.g.
 
 ## get sha
 
-- git rev-parse --short HEAD
+`git rev-parse --short HEAD`
 
 ## push images with tag sha
 
-- `docker push sergiouk10/node-app-server:$(git rev-parse --short HEAD)`
+`docker push sergiouk10/node-app-server:$(git rev-parse --short HEAD)`
