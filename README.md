@@ -141,3 +141,31 @@ e.g.
 ## push images with tag sha
 
 `docker push sergiouk10/node-app-server:$(git rev-parse --short HEAD)`
+
+# Networking
+
+## Between containers
+
+To comunicate containers we need to create a network adding the --network tag
+use name of the container name address with db as domain also you can inspect container and add the IP address
+
+steps:
+
+- create image for your containers
+  - `docker run mongo`
+  - `docker build -t f-node:latest .`
+- create network
+  `docker network --help`
+  `docker network create favorites-net`
+  `docker network ls`
+- add network to your container
+  `docker run -d --name mongodb --network favorites-net mongo`
+  `docker run --name favorites --rm -p 3000:3000 -d --network favorites-net f-node:latest`
+- add name or your network to your host in http request
+
+NOTE: you can inspect containers
+`docker container inspect mongodb`
+
+## Between external db or your host machine
+
+we can just use host.docker.interal in your http request
