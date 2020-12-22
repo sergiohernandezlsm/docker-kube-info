@@ -104,6 +104,10 @@ DOCKER INFO
 
 - we can read only adding extra : at the end eg: `-v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro"`
 
+### good example of volume NOTE: needs nodemon to update container
+
+- docker run -p 3000:80 -d --rm --name feedback-app -v "/Users/sergiohernandez/Documents/cursos/docker-2-first-image:/app:ro" -v /app/node_modules node-server:v1
+
 ## env to run docker
 
 `docker run -p 3000:8000 --env PORT=8000 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env`
