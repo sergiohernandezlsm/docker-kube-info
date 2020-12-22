@@ -1,0 +1,44 @@
+version: "3.8" #https://docs.docker.com/compose/compose-file/
+services: #services are containers
+  mongodb:
+    image: "mongo"
+    volumes:
+      - data:/data/db
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: max
+    #   MONGO_INITDB_ROOT_PASSWORD: secret
+      # - MONGO_INITDB_ROOT_USERNAME=max
+    env_file:
+      - ./env/mongo.env
+    # networks: #not needed but you can specify the network
+    #   - goals-net
+    # container_name: mongodb # if you want to rename your container
+  backend:
+    build: ./backend # shorter way
+    #build:
+      #context: ./backend
+      #dockerfile: Dockerfile # not needed if Docker file dont change name
+      # dockerfile: Dockerfile-dev if docker file has different name
+    ports:
+      - "80:80"
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true # tells docker this sever needs open input connection
+    tty: true # attaching terminal
+    depends_on:
+      - backend
+volumes:
+  data:
+  logs:

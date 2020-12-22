@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  serverapp:
+    build: ./
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - 80:80
