@@ -173,3 +173,5 @@ NOTE: you can inspect containers
 ## Between external db or your host machine
 
 we can just use host.docker.interal in your http request
+
+## docker-compose up with example in root
