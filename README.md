@@ -174,4 +174,34 @@ NOTE: you can inspect containers
 
 we can just use host.docker.interal in your http request
 
-## docker-compose up with example in root
+# NOTE: docker-compose up with example in root
+
+## utility container
+
+1.- create image for initial container Dockerfile
+2.- run image with volumen binding and (npm init in iteractive mode in this case)
+
+- display your container in the root dir
+  e.g: docker run -it -v /Users/sergiohernandez/Documents/cursos/docker-2-first-image:/app name-of-rnning-image npm init
+
+# Deployment EC2 instance
+
+## AWS must display the image using the dockerhub image, simple way with EC2 instance
+
+### Steps
+
+- create EC2 server with privileges could be type:HTTP and slecting port:80 or type:alltraffic port:all protocol:all
+- set config for this servwr with docker inside and uese the dockerhub image
+
+### to refrest changes simple way with EC2 instance
+
+### Steps
+
+- Rebuild image and update image tagged
+  `docker build -t image-to-be-build .`
+  `docker tag image-to-be-build dockerhub-account/repo-name`
+- Push to dockerhub
+  `docker push dockerhub-account/repo-name`
+- Make sure we use the latest image in the server pulling latest version NOTE: image must be stopped a removed first
+  `docker pull dockerhub-account/repo-name`
+  `docker pulrun -d --rm -p 80:80 dockerhub-account/repo-name`
