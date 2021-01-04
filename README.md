@@ -249,15 +249,102 @@ we can just use host.docker.interal in your http request
   - https://kubernetes.io/docs/tasks/tools/install-kubectl/
   - https://kubernetes.io/docs/tasks/tools/install-minikube
 
-To run and start minikube if you have a hyperkit installed if ins't could be with docker
+### To run and start minikube if you have a hyperkit installed if ins't could be with docker
 
 - `minikube start --driver=hyperkit`
 - `minikube start --driver=docker`
 
-### check minikube
+### check minikube cluster is up a running
 
 - `minikube status`
 
 ### open dashboard in the browser
 
 - `minikube dashboard`
+
+### we use this `kubectl` command to send instructions to the cluster e.g: create deployments
+
+- `kubectl --help`
+
+## deployment pod
+
+### create new deployment cluster
+
+- `kubectl create --help`
+- `kubectl create deployment new-deployment-pod-name --image=sergiouk10/kub-first-app`
+
+NOTE: image name must be in dockerhub to be able to get it
+remenber steps:
+
+1. build image
+
+- `docker build -t image-name .`
+
+2. create dockerhub repocitory
+3. re-tag image to dockerhub repo name
+
+- `docker tag image-name sergiouk10/dockerhub-new-image-name`
+
+4. push to dockerhub with new image name
+
+- `docker push sergiouk10/dockerhub-new-image-name`
+
+### get deployments
+
+- `kubectl get deployments`
+
+### get pods
+
+- `kubectl get pods`
+
+### delete deployments
+
+- `kubectl delete deployment new-deployment-pod-name`
+
+## service
+
+Group pods to shared IP address, we need to expose a deployment
+
+### check services
+
+- `kubectl get services`
+
+### expose container creating service
+
+1. Include expose in kebectl command
+
+- `kubectl expose deployment`
+
+2. Especify name of deployment
+
+- `kubectl expose deployment first-app`
+
+3. Especify port to expose
+
+- this is the container exposed port eg: 8080
+- `kubectl expose deployment first-app --port=8080`
+
+4. Include type of serverr or exposings
+
+- Posible types
+
+  1. ClusterIP: this means will only be reachable inside this cluster (this is the default)
+
+  - `kubectl expose deployment first-app --type=ClusterIP --port=8080`
+
+  2. NodePort: this deployment should be expose with help of the IP address of the worker node
+
+  - `kubectl expose deployment first-app --type=NodePort --port=8080`
+
+  3. LoadBalancer: utilice loadbalancer which have to exis in the infrastruture on which our cluster runs and this loadbalancer generate a unique IP address for this server and also distribute incoming traffic across our pods part of this services
+
+  - `kubectl expose deployment first-app --type=LoadBalancer --port=8080`
+
+NOTE: loadbalancer can be use only if your cluster or provider suported e.g: AWS and also minikube does support this
+
+- `kubectl expose deployment first-app --type=LoadBalancer --port=8080`
+
+### display in browser
+
+- `minikube service services-name`
+- e.g: `minikube service first-app`
