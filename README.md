@@ -328,9 +328,9 @@ Group pods to shared IP address, we need to expose a deployment
 
 - Posible types
 
-  1. ClusterIP: this means will only be reachable inside this cluster (this is the default)
+  - ClusterIP: this means will only be reachable inside this cluster (this is the default)
 
-  - `kubectl expose deployment first-app --type=ClusterIP --port=8080`
+    - `kubectl expose deployment first-app --type=ClusterIP --port=8080`
 
   2. NodePort: this deployment should be expose with help of the IP address of the worker node
 
