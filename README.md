@@ -5,7 +5,7 @@ DOCKER INFO
 `docker build .`
 
 - using tag could be version like github sha
-  `docker build -t name:tag .`
+  - `docker build -t name:tag .`
 
 ## run container
 
@@ -45,8 +45,8 @@ DOCKER INFO
 
 ## copy files or folders could be inside a container
 
-`docker cp directory-or-file-to-be-copy destiny`
-`docker cp directory-or-file-to-be-copy container-name:/forder-or-directory`
+- `docker cp directory-or-file-to-be-copy destiny`
+- `docker cp directory-or-file-to-be-copy container-name:/forder-or-directory`
 
 ## name container
 
@@ -54,10 +54,10 @@ DOCKER INFO
 
 ## name image is a tag
 
-`name:tag = REPOSITORY:TAG = name:version`
-`e.g FROM node:12`
-`docker build -t name:tag .`
-`docker build -t goals:latest-sergio .`
+- `name:tag = REPOSITORY:TAG = name:version`
+- `e.g FROM node:12`
+- `docker build -t name:tag .`
+- `docker build -t goals:latest-sergio .`
 
 ## you can start a container using name and tag
 
@@ -65,16 +65,16 @@ DOCKER INFO
 
 ## rename images
 
-`docker tag current-REPOSITORY:TAG new-docker-hub-sergiouk10/node-app-server`
-`e.g. docker tag goals:latest-sergio sergiouk10/node-app-server`
+- `docker tag current-REPOSITORY:TAG new-docker-hub-sergiouk10/node-app-server`
+- e.g: `docker tag goals:latest-sergio sergiouk10/node-app-server`
 
 # share images in dockerhub
 
 ## create image to push push to dockerhub
 
-`create dockerhub repo`
-`get slug e.g: sergiouk10/node-app-server`
-`build image with -t e.g: docker build -t sergiouk10/node-app-server:version-example .`
+- `create dockerhub repo`
+- `get slug e.g: sergiouk10/node-app-server`
+- `build image with -t e.g: docker build -t sergiouk10/node-app-server:version-example .`
 
 ## push image to dockerhub
 
@@ -94,14 +94,14 @@ DOCKER INFO
 
 ## remove volume
 
-`docker volume prune`
-`docker volume rm vol_name`
+- `docker volume prune`
+- `docker volume rm vol_name`
 
 ## binding volume path
 
-`we need to add a relative path and the path inside your container`
-`docker run -p 3000:80 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app" feedback-node:volumes`
-`we can use ---> -v $(pwd):/app`
+- `we need to add a relative path and the path inside your container`
+- `docker run -p 3000:80 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app" feedback-node:volumes`
+  `we can use ---> -v $(pwd):/app`
 
 - note: we need to add node modules in volume
 
@@ -119,9 +119,12 @@ DOCKER INFO
 
 ## with env file
 
-- with env file-> `docker run -p 3000:8000 --env-file ./.env -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env`
+- with env file->
 
-- without env file-> `docker run -p 3000:8000 --env PORT=8000 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env`
+  - `docker run -p 3000:8000 --env-file ./.env -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env`
+
+- without env file->
+  - `docker run -p 3000:8000 --env PORT=8000 -d --rm --name feedback-app -v feedback:/app/feedback -v "/Users/sergiohernandez/Documents/cursos/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback:env`
 
 e.g.
 
@@ -164,16 +167,17 @@ steps:
   - `docker run mongo`
   - `docker build -t f-node:latest .`
 - create network
-  `docker network --help`
-  `docker network create favorites-net`
-  `docker network ls`
+  - `docker network --help`
+  - `docker network create favorites-net`
+  - `docker network ls`
 - add network to your container
-  `docker run -d --name mongodb --network favorites-net mongo`
-  `docker run --name favorites --rm -p 3000:3000 -d --network favorites-net f-node:latest`
+  - `docker run -d --name mongodb --network favorites-net mongo`
+  - `docker run --name favorites --rm -p 3000:3000 -d --network favorites-net f-node:latest`
 - add name or your network to your host in http request
 
 NOTE: you can inspect containers
-`docker container inspect mongodb`
+
+- `docker container inspect mongodb`
 
 ## Between external db or your host machine
 
@@ -187,7 +191,7 @@ we can just use host.docker.interal in your http request
 2.- run image with volumen binding and (npm init in iteractive mode in this case)
 
 - display your container in the root dir
-  e.g: docker run -it -v /Users/sergiohernandez/Documents/cursos/docker-2-first-image:/app name-of-rnning-image npm init
+  - e.g: `docker run -it -v /Users/sergiohernandez/Documents/cursos/docker-2-first-image:/app name-of-rnning-image npm init`
 
 # Deployment EC2 instance
 
@@ -203,10 +207,10 @@ we can just use host.docker.interal in your http request
 ### Steps
 
 - Rebuild image and update image tagged
-  `docker build -t image-to-be-build .`
-  `docker tag image-to-be-build dockerhub-account/repo-name`
+  - `docker build -t image-to-be-build .`
+  - `docker tag image-to-be-build dockerhub-account/repo-name`
 - Push to dockerhub
-  `docker push dockerhub-account/repo-name`
+  - `docker push dockerhub-account/repo-name`
 - Make sure we use the latest image in the server pulling latest version NOTE: image must be stopped a removed first
-  `docker pull dockerhub-account/repo-name`
-  `docker pulrun -d --rm -p 80:80 dockerhub-account/repo-name`
+  - `docker pull dockerhub-account/repo-name`
+  - `docker pulrun -d --rm -p 80:80 dockerhub-account/repo-name`
