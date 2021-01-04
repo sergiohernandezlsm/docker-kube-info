@@ -187,8 +187,8 @@ we can just use host.docker.interal in your http request
 
 ## utility container
 
-1.- create image for initial container Dockerfile
-2.- run image with volumen binding and (npm init in iteractive mode in this case)
+1. create image for initial container Dockerfile
+2. run image with volumen binding and (npm init in iteractive mode in this case)
 
 - display your container in the root dir
   - e.g: `docker run -it -v /Users/sergiohernandez/Documents/cursos/docker-2-first-image:/app name-of-rnning-image npm init`
@@ -214,3 +214,11 @@ we can just use host.docker.interal in your http request
 - Make sure we use the latest image in the server pulling latest version NOTE: image must be stopped a removed first
   - `docker pull dockerhub-account/repo-name`
   - `docker pulrun -d --rm -p 80:80 dockerhub-account/repo-name`
+
+# Kubernetes
+
+- Pod: wrap container/s
+- Node: Wrap Pod e.g: this could be like EC2 instance in AWS
+  - run the container of your app
+  - node anr your machines / virtual instances
+- Proxy: Handle request into the node to the pod for external user
