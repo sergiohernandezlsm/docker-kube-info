@@ -4,13 +4,16 @@ DOCKER INFO
 
 `docker build .`
 
+- using tag could be version like github sha
+  `docker build -t name:tag .`
+
 ## run container
 
 `docker run -p 8000:80 imageidxxx`
 
-## Run container and removed after close
+## Run container and removed after close with also container name
 
-`docker run -p 3000:80 -d --rm imageidxxx`
+`docker run -p 3000:80 -d --rm --name example-container-name imageidxxx`
 
 ## Check container
 
@@ -65,17 +68,19 @@ DOCKER INFO
 `docker tag current-REPOSITORY:TAG new-docker-hub-sergiouk10/node-app-server`
 `e.g. docker tag goals:latest-sergio sergiouk10/node-app-server`
 
-## push to dockerhub
+# share images in dockerhub
+
+## create image to push push to dockerhub
 
 `create dockerhub repo`
 `get slug e.g: sergiouk10/node-app-server`
 `build image with -t e.g: docker build -t sergiouk10/node-app-server:version-example .`
 
-## push to docker hub
+## push image to dockerhub
 
 `docker push sergiouk10/node-app-server:version-example`
 
-## pull to docker hub
+## pull image from dockerhub
 
 `docker pull sergiouk10/node-app-server`
 
