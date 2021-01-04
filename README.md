@@ -217,8 +217,28 @@ we can just use host.docker.interal in your http request
 
 # Kubernetes
 
-- Pod: wrap container/s
-- Node: Wrap Pod e.g: this could be like EC2 instance in AWS
-  - run the container of your app
-  - node anr your machines / virtual instances
-- Proxy: Handle request into the node to the pod for external user
+## Architecture
+
+1. Pod: small unit to holds and execute container/s
+2. Worker node: Wrap Pod e.g: this could be like EC2 instance in AWS another example is like my local machine
+
+- run the container of your app
+- node anr your machines / virtual instances
+- managed by master node
+
+3. Proxy: Handle request into the node to the pod for external user
+4. Master node / the control Plane: its like a remote machine responsible for interac with nodes
+
+### Worker Node
+
+1. Kubelet: communication between master and worker node
+2. Docker: needs to have docker env installed like any other instance
+3. Pod: holds or wrap, and execute container/s, volumes or any other container setup or tool
+4. Kube-proxy: Managed node and pod network communication handle traffic to your worker node
+
+### Master Node
+
+1. API server: handle communication between worker and master node, counter point por kubelet to communicate
+2. Schedule: watches for new pods, select worker nodes to run them on
+3. Kube-controller-manager: watch and controls worker nodes, correct number of pods
+4. Cloud-controller-manager: translade instructionsto cloud provider
