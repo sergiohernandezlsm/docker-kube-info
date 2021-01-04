@@ -309,7 +309,7 @@ Group pods to shared IP address, we need to expose a deployment
 
 - `kubectl get services`
 
-### expose container creating service
+### Expose container creating service
 
 1. Include expose in kebectl command
 
@@ -324,7 +324,7 @@ Group pods to shared IP address, we need to expose a deployment
 - this is the container exposed port eg: 8080
 - `kubectl expose deployment first-app --port=8080`
 
-4. Include type of serverr or exposings
+4. Include type of server or exposings
 
 - Posible types
 
@@ -346,5 +346,6 @@ NOTE: loadbalancer can be use only if your cluster or provider suported e.g: AWS
 
 ### display in browser
 
+- `kubectl get services`
 - `minikube service services-name`
 - e.g: `minikube service first-app`
