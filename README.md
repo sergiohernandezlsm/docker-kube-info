@@ -332,13 +332,13 @@ Group pods to shared IP address, we need to expose a deployment
 
     - `kubectl expose deployment first-app --type=ClusterIP --port=8080`
 
-  2. NodePort: this deployment should be expose with help of the IP address of the worker node
+  - NodePort: this deployment should be expose with help of the IP address of the worker node
 
-  - `kubectl expose deployment first-app --type=NodePort --port=8080`
+    - `kubectl expose deployment first-app --type=NodePort --port=8080`
 
-  3. LoadBalancer: utilice loadbalancer which have to exis in the infrastruture on which our cluster runs and this loadbalancer generate a unique IP address for this server and also distribute incoming traffic across our pods part of this services
+  - LoadBalancer: utilice loadbalancer which have to exis in the infrastruture on which our cluster runs and this loadbalancer generate a unique IP address for this server and also distribute incoming traffic across our pods part of this services
 
-  - `kubectl expose deployment first-app --type=LoadBalancer --port=8080`
+    - `kubectl expose deployment first-app --type=LoadBalancer --port=8080`
 
 NOTE: loadbalancer can be use only if your cluster or provider suported e.g: AWS and also minikube does support this
 
