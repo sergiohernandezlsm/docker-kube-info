@@ -217,7 +217,7 @@ we can just use host.docker.interal in your http request
 
 # Kubernetes
 
-## Architecture
+## Architecture Theory
 
 1. Pod: small unit to holds and execute container/s
 2. Worker node: Wrap Pod e.g: this could be like EC2 instance in AWS another example is like my local machine
@@ -242,3 +242,22 @@ we can just use host.docker.interal in your http request
 2. Schedule: watches for new pods, select worker nodes to run them on
 3. Kube-controller-manager: watch and controls worker nodes, correct number of pods
 4. Cloud-controller-manager: translade instructionsto cloud provider
+
+## Minikube instalation
+
+- links:
+  - https://kubernetes.io/docs/tasks/tools/install-kubectl/
+  - https://kubernetes.io/docs/tasks/tools/install-minikube
+
+To run and start minikube if you have a hyperkit installed if ins't could be with docker
+
+- `minikube start --driver=hyperkit`
+- `minikube start --driver=docker`
+
+### check minikube
+
+- `minikube status`
+
+### open dashboard in the browser
+
+- `minikube dashboard`
