@@ -1,4 +1,4 @@
-DOCKER INFO
+### DOCKER
 
 ## build image
 
@@ -183,7 +183,7 @@ NOTE: you can inspect containers
 
 we can just use host.docker.interal in your http request
 
-# NOTE: docker-compose up with example in root
+### NOTE: docker-compose up with example in root
 
 ## utility container
 
